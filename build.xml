@@ -25,7 +25,7 @@
    	    </javac>
    	  </target>
 
-   	  <target name="test" depends="test-compile">
+   	  <target name="test-racer" depends="test-compile">
    	 <junit printsummary="on" showoutput="off" haltonfailure="yes"
    	           fork="yes" forkmode="perTest" maxmemory="1024m">
    	        <classpath>

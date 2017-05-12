@@ -1,11 +1,13 @@
 /*************************************************************************
  *  Compilation:  javac RingBuffer.java
  *  Execution:    java RingBuffer
- *  
+ *
  *  Ring buffer (fixed size queue) implementation using a circular array
  *  (array with wrap-around).
  *
  *************************************************************************/
+
+import gov.nasa.jpf.vm.Verify;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -19,7 +21,6 @@ public class RingBuffer<Item> implements Iterable<Item> {
     private int first = 0;       // index of first element of queue
     private int last  = 0;       // index of next available slot
 
-    // cast needed since no generic array creation in Java
     public RingBuffer(int capacity) {
         a = (Item[]) new Object[capacity];
     }
@@ -56,6 +57,18 @@ public class RingBuffer<Item> implements Iterable<Item> {
             if (!hasNext()) throw new NoSuchElementException();
             return a[i++];
         }
+    }
+
+    public static void main(String[] args){
+        RingBuffer<Integer> ringBuffer = new RingBuffer<>(Verify.getInt(0,10));
+        int first = Verify.getInt(0,10);
+        ringBuffer.enqueue(first);
+        first = ringBuffer.dequeue();
+        System.out.println("First item: " + first);
+        int second  = Verify.getInt(10,15);
+        ringBuffer.enqueue(second);
+        second = ringBuffer.dequeue();
+        System.out.println("Second item: " + second);
     }
 
 }
