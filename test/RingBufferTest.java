@@ -6,29 +6,28 @@ import org.junit.Test;
 
 public class RingBufferTest extends TestJPF {
 
-    public static void main(String[] args) {
-        RingBuffer<Object> ringBuffer = new RingBuffer(Verify.getInt(1,10));
-        while (true) {
-            if (Verify.getBoolean()) {
-                ringBuffer.enqueue(Verify.randomObject("String"));
-            } else {
-                ringBuffer.dequeue();
-            }
-        }
-    }
-
-
     @Test
-    public void test() {
+    public void testRingBufferOverflow() {
         if (verifyNoPropertyViolation("search.multiple_errors=true")) {
-            RingBuffer<Object> ringBuffer = new RingBuffer(Verify.random(10));
-            while (true) {
-                if (Verify.getBoolean()) {
-                    ringBuffer.enqueue(Verify.randomObject("String"));
-                } else {
-                    ringBuffer.dequeue();
+            int capacity = 3;
+            RingBuffer<Integer> ringBuffer = new RingBuffer<>(capacity);
+            int i = 0;
+            int enqueue = 0;
+            int dequeue = 0;
+            while(i < 5){
+                if(Verify.getBoolean()){
+                    Verify.ignoreIf(enqueue - dequeue>= capacity);
+                    ringBuffer.enqueue(1);
+                    enqueue++;
                 }
+                else {
+                    Verify.ignoreIf(enqueue <= dequeue);
+                    ringBuffer.dequeue();
+                    dequeue++;
+                }
+                i++;
             }
         }
     }
+
 }

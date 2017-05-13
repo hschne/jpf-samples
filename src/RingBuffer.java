@@ -7,6 +7,7 @@
  *
  *************************************************************************/
 
+import gov.nasa.jpf.vm.IncrementalChangeTracker;
 import gov.nasa.jpf.vm.Verify;
 
 import java.util.Iterator;
@@ -60,15 +61,7 @@ public class RingBuffer<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args){
-        RingBuffer<Integer> ringBuffer = new RingBuffer<>(Verify.getInt(0,10));
-        int first = Verify.getInt(0,10);
-        ringBuffer.enqueue(first);
-        first = ringBuffer.dequeue();
-        System.out.println("First item: " + first);
-        int second  = Verify.getInt(10,15);
-        ringBuffer.enqueue(second);
-        second = ringBuffer.dequeue();
-        System.out.println("Second item: " + second);
+
     }
 
 }
