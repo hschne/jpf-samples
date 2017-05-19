@@ -7,9 +7,6 @@
  *
  *************************************************************************/
 
-import gov.nasa.jpf.vm.IncrementalChangeTracker;
-import gov.nasa.jpf.vm.Verify;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
