@@ -1,7 +1,11 @@
 *.class
 
-.idea
+
 bin
+
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/sonarlint
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
