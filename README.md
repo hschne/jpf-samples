@@ -1,6 +1,6 @@
 # A simple JPF Example
 
-This repository contains samples on how to use JPF to Test your Programs or Modules. JPF can be executed 
+This repository contains samples on how to use JPF to test your programs or modules. JPF can be executed 
 - using the command line.
 - from within JUnit Test Cases.
 - using plain old Java.
@@ -16,14 +16,16 @@ Additionally, just must set up a *site.properties* file. Instructions on how to 
 Use ant to build the examples: 
 
     ant compile
+    ant test-compile
 
 To run the *Racer* example you need only execute:
 
     path-to-jpf-core/bin/jpf src/racer.jpf
 
-To build and run the *RingBuffer* example from your IDE you need to add at *jpf.jar* to your classpath. 
+To build and run the *RingBuffer* example from your IDE you need to add *jpf.jar* to your classpath. 
 If you use ant, you might have to adjust *jpf.lib.dir* to point to your JPF installation. 
-Now you can execute *RingBufferTest* from your IDE or using
+
+Execute *RingBufferTest* from your IDE like you normally would or execute the test using ant: 
     
     ant test
 
