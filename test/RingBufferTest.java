@@ -4,6 +4,10 @@ import org.junit.Test;
 
 public class RingBufferTest extends TestJPF {
 
+    /**
+     * A simple JUnit JPF test case.
+     * In order to make this fail comment, for example, line 41 in RingBuffer (N--).
+     */
     @Test
     public void testRingBufferOverflow() {
         if (verifyNoPropertyViolation("search.multiple_errors=true")) {
@@ -14,10 +18,12 @@ public class RingBufferTest extends TestJPF {
             int dequeue = 0;
             while (i < 5) {
                 if (Verify.getBoolean()) {
+                    //Branches known to cause exceptions are eliminated
                     Verify.ignoreIf(enqueue - dequeue >= capacity);
                     ringBuffer.enqueue(1);
                     enqueue++;
                 } else {
+                    //Branches known to cause exceptions are eliminated
                     Verify.ignoreIf(enqueue <= dequeue);
                     ringBuffer.dequeue();
                     dequeue++;
